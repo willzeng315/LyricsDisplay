@@ -1,0 +1,24 @@
+# 忽略與專案編譯無關的檔案
+[Oo]bj
+[Bb]in
+[Tt]emp
+*.user
+*.suo
+*.[Cc]ache
+*.bak
+*.log 
+*.DS_Store
+[Tt]est[Rr]esult*
+[Tt]humbs.db 
+_ReSharper.*
+*.resharper
+Ankh.NoLoad
+ 
+# 忽略壓縮檔或一些大檔案
+*.7z
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
