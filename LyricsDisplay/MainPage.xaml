@@ -47,15 +47,19 @@
 
         <!--ContentPanel - 其他內容置於此-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <MediaElement Height="299" HorizontalAlignment="Left" Margin="28,6,0,0" Name="Mp3Player" VerticalAlignment="Top" Width="400" Volume="100"/>
-            <ListBox x:Name ="listbox" ItemsSource="{Binding Items}" 
-                     HorizontalContentAlignment="Stretch"
-                     SelectedValue ="">
+            <MediaElement Height="299" HorizontalAlignment="Center" Margin="28,6,0,0" Name="Mp3Player" VerticalAlignment="Top" Width="400" Volume="100"/>
+            <ListBox x:Name ="listbox" ItemsSource="{Binding Items}" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" ></Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Background="{StaticResource PhoneBackgroundBrush}" Margin="12,0,0,10" HorizontalAlignment="Stretch">
-                            <TextBlock Text="{Binding Words}"  Foreground="{Binding Color}" FontSize="{Binding Size}" TextWrapping="Wrap"/>
-                        </Grid>
+                        <!--<Grid Background="{StaticResource PhoneBackgroundBrush}" Margin="12,0,0,10" HorizontalAlignment="Stretch">-->
+                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding Words}"  Foreground="{Binding Color}" FontSize="{Binding Size}"  
+                                        TextWrapping="Wrap"/>
+                        <!--</Grid>-->
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

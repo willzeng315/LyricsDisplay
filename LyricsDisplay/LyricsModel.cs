@@ -16,7 +16,7 @@ namespace LyricsDisplay
                 Words = words;
                 StartSecond = startSecond;
                 EndSecond = -1;
-                Size = 25;
+                Size = 22;
                 Color = "#FFFFFF";
                 //Description = description;
             }
@@ -25,7 +25,7 @@ namespace LyricsDisplay
                 Words = "";
                 StartSecond = -1;
                 EndSecond = -1;
-                Size = 25;
+                Size = 22;
                 Color = "#FFFFFF";
                 //Description = description;
             }
@@ -34,7 +34,7 @@ namespace LyricsDisplay
                 Words = words;
                 StartSecond = startSecond;
                 EndSecond = endSecond;
-                Size = 25;
+                Size = 22;
                 Color = "#FFFFFF";
                 //Description = description;
             }

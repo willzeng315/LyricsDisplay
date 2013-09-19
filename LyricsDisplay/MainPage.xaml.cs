@@ -20,7 +20,7 @@ namespace LyricsDisplay
         // 建構函式
 
         private ObservableCollection<LyricsItem> LyricsItemSet;
-        private Int32 count = 1;
+        private Int32 count = 2;
         private LyricsItemPageModel model;
         public LyricsItemPageModel Model
         {
@@ -55,7 +55,7 @@ namespace LyricsDisplay
 
             if (count < LyricsItemSet.Count && LyricsItemSet[count].StartSecond == -1)
             {
-                LyricsItemSet[count - 1].Size = 25;
+                LyricsItemSet[count - 1].Size = 22;
                 LyricsItemSet[count - 1].Color = "#FFFFFF";
                 count++;
             }
@@ -67,16 +67,16 @@ namespace LyricsDisplay
 
                 if (count == 0)
                 {
-                    LyricsItemSet[count].Size = 30;
+                    LyricsItemSet[count].Size = 26;
                     LyricsItemSet[count].Color = "#FF0000";
                     count++;
                 }
                 else
                 {
-                    LyricsItemSet[count - 1].Size = 25;
+                    LyricsItemSet[count - 1].Size = 22;
                     LyricsItemSet[count - 1].Color = "#FFFFFF";
 
-                    LyricsItemSet[count].Size = 30;
+                    LyricsItemSet[count].Size = 26;
                     LyricsItemSet[count].Color = "#FF0000";
                     if (LyricsItemSet[count].EndSecond == -1)
                     {
@@ -87,10 +87,10 @@ namespace LyricsDisplay
             }
 
 
-            if (count < LyricsItemSet.Count && LyricsItemSet[count].EndSecond != -1)
-            {
-                //Debug.WriteLine("Target End: " + LyricsItemSet[count].EndSecond);
-            }
+            //if (count < LyricsItemSet.Count && LyricsItemSet[count].EndSecond != -1)
+            //{
+            //    //Debug.WriteLine("Target End: " + LyricsItemSet[count].EndSecond);
+            //}
             if (count < LyricsItemSet.Count && count > 1 && LyricsItemSet[count].EndSecond == CurrentPlayTotalSeconds)
             {
                // Debug.WriteLine("Target End");
@@ -132,7 +132,7 @@ namespace LyricsDisplay
         private void LoadLyricsInfo()
         {
             LyricsItemSet = new ObservableCollection<LyricsItem>();
-            LyricsItemSet.Add(new LyricsItem("Not Your Kind Of People", 0));
+            LyricsItemSet.Add(new LyricsItem("Not Your Kind Of People", 0) { Size = 30,Color = "#0000FF"});
             LyricsItemSet.Add(new LyricsItem());
             LyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 17));
             LyricsItemSet.Add(new LyricsItem("You seem kind of phoney.", 23));
@@ -174,7 +174,7 @@ namespace LyricsDisplay
             LyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 236));
             LyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 243));
             LyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 251));
-            LyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 258));
+            LyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 258,263));
 
             Model.Items = LyricsItemSet;
         }
