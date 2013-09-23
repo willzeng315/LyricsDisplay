@@ -35,10 +35,10 @@ namespace LyricsDisplay
             InitializeComponent();
             DataContext = Model;
 
-            DispatcherTimer tmr = new DispatcherTimer();
-            tmr.Interval = TimeSpan.FromSeconds(0.5);
-            tmr.Tick += OnTimerTick;
-            tmr.Start();
+            DispatcherTimer Timer = new DispatcherTimer();
+            Timer.Interval = TimeSpan.FromSeconds(0.5);
+            Timer.Tick += OnTimerTick;
+            Timer.Start();
         }
         
         private void OnTimerTick(object sender, EventArgs e)

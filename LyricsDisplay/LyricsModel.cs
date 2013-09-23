@@ -42,7 +42,7 @@ namespace LyricsDisplay
             }
             set
             {
-                SetProperty(ref words, value, "Link");
+                SetProperty(ref words, value, "Words");
             }
         }
 
@@ -150,9 +150,8 @@ namespace LyricsDisplay
                 SetProperty(ref items, value, "Items");
             }
         }
-
-        public Int32 count = 2;
-        public Int32 CurrentPlayingIndex = 1;
+        
+        public Int32 CurrentPlayingIndex = 0;
         public Int32 LastIndex = 0;
         public const Int32 FocusShift = 15;
 
@@ -177,10 +176,9 @@ namespace LyricsDisplay
                 else
                 {
                     Items[LastIndex].IsPlaying = false;
-
                     Items[CurrentPlayingIndex].IsPlaying = true;
-
                     LastIndex = CurrentPlayingIndex;
+
                     if (Items[CurrentPlayingIndex].EndSecond == -1)
                     {
                         CurrentPlayingIndex++;
