@@ -14,8 +14,7 @@ namespace LyricsDisplay
             Words = words;
             StartSecond = startSecond;
             EndSecond = -1;
-            Size = 22;
-            Color = "#FFFFFF";
+            IsPlaying = false;
         }
 
         public LyricsItem()
@@ -23,16 +22,15 @@ namespace LyricsDisplay
             Words = "";
             StartSecond = -1;
             EndSecond = -1;
-            Size = 22;
-            Color = "#FFFFFF";
+            IsPlaying = false;
         }
         public LyricsItem(String words, Int32 startSecond, Int32 endSecond)
         {
             Words = words;
             StartSecond = startSecond;
             EndSecond = endSecond;
-            Size = 22;
-            Color = "#FFFFFF";
+            IsPlaying = false;
+
         }
 
         private String words;
@@ -74,29 +72,16 @@ namespace LyricsDisplay
             }
         }
 
-        private Int32 size;
-        public Int32 Size
+        private Boolean isPlaying;
+        public Boolean IsPlaying
         {
             get
             {
-                return size;
+                return isPlaying;
             }
             set
             {
-                SetProperty(ref size, value, "Size");
-            }
-        }
-
-        private String color;
-        public String Color
-        {
-            get
-            {
-                return color;
-            }
-            set
-            {
-                SetProperty(ref color, value, "Color");
+                SetProperty(ref isPlaying, value, "IsPlaying");
             }
         }
     }
@@ -107,7 +92,7 @@ namespace LyricsDisplay
         {
             Items = new ObservableCollection<LyricsItem>();
 
-            Items.Add(new LyricsItem("Not Your Kind Of People", 0) { Size = 30, Color = "#0000FF" });
+            Items.Add(new LyricsItem("Not Your Kind Of People", 0));
             Items.Add(new LyricsItem());
             Items.Add(new LyricsItem("We are not your kind of people.", 17));
             Items.Add(new LyricsItem("You seem kind of phoney.", 23));
@@ -185,18 +170,15 @@ namespace LyricsDisplay
 
                 if (CurrentPlayingIndex == 1)
                 {
-                    Items[CurrentPlayingIndex].Size = 25;
-                    Items[CurrentPlayingIndex].Color = "#FF0000";
+                    Items[CurrentPlayingIndex].IsPlaying = true;
                     LastIndex = CurrentPlayingIndex;
                     CurrentPlayingIndex++;
                 }
                 else
                 {
-                    Items[LastIndex].Size = 22;
-                    Items[LastIndex].Color = "#FFFFFF";
+                    Items[LastIndex].IsPlaying = false;
 
-                    Items[CurrentPlayingIndex].Size = 25;
-                    Items[CurrentPlayingIndex].Color = "#FF0000";
+                    Items[CurrentPlayingIndex].IsPlaying = true;
 
                     LastIndex = CurrentPlayingIndex;
                     if (Items[CurrentPlayingIndex].EndSecond == -1)
@@ -209,8 +191,7 @@ namespace LyricsDisplay
 
             if (CurrentPlayingIndex < Items.Count && CurrentPlayingIndex > 1 && Items[CurrentPlayingIndex].EndSecond == CurrentPlayTotalSeconds)
             {
-                Items[CurrentPlayingIndex].Size = 22;
-                Items[CurrentPlayingIndex].Color = "#FFFFFF";
+                Items[CurrentPlayingIndex].IsPlaying = false;
                 CurrentPlayingIndex++;
             }
         }

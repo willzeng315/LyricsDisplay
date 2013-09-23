@@ -94,6 +94,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BindableBase.cs" />
+    <Compile Include="BooleanToColorConverter.cs" />
+    <Compile Include="BooleanToSizeConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="LyricsModel.cs" />
     <Compile Include="MainPage.xaml.cs">

@@ -39,8 +39,10 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <!--<Grid Background="{StaticResource PhoneBackgroundBrush}" Margin="12,0,0,10" HorizontalAlignment="Stretch">-->
-                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding Words}"  Foreground="{Binding Color}" FontSize="{Binding Size}"  
-                                        TextWrapping="Wrap"/>
+                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding Words}"   
+                                   FontSize="{Binding IsPlaying, Converter={StaticResource BooleanToSize}}" 
+                                   Foreground="{Binding IsPlaying, Converter={StaticResource BooleanToColor}}" 
+                                   TextWrapping="Wrap"/>
                         <!--</Grid>-->
                     </DataTemplate>
                 </ListBox.ItemTemplate>
