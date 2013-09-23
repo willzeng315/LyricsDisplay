@@ -20,25 +20,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- 當地語系化注意事項:
-            若要將顯示的字串當地語系化，請將其值複製到應用程式的中性語言資源檔
-            (AppResources.resx) 中已適當命名的機碼，然後
-            將屬性的引號之間硬式編碼的文字值取代
-            為其路徑指向該字串名稱的繫結子句。
-
-            例如:
-
-                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
-
-            此繫結指向範本中名為 "ApplicationTitle" 的字串資源。
-
-            在 [專案屬性] 索引標籤中加入支援的語言將為
-            每種能承載 UI 字串翻譯值的每一種語言建立一個
-            新的 resx 檔案。這些範例中的繫結將導致在執行時從
-            與應用程式的 CurrentUICulture 相符的 .resx 檔案中
-            取得屬性的值。
-         -->
-
         <!--TitlePanel 包含應用程式的名稱和頁面標題-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="應用程式" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
@@ -48,7 +29,7 @@
         <!--ContentPanel - 其他內容置於此-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <MediaElement Height="299" HorizontalAlignment="Center" Margin="28,6,0,0" Name="Mp3Player" VerticalAlignment="Top" Width="400" Volume="100"/>
-            <ListBox x:Name ="listbox" ItemsSource="{Binding Items}" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListBox Name ="LyricsListBox" ItemsSource="{Binding Items}" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" ></Setter>

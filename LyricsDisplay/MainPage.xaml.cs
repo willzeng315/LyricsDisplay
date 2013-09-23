@@ -19,8 +19,10 @@ namespace LyricsDisplay
     {
         // 建構函式
 
-        private ObservableCollection<LyricsItem> LyricsItemSet;
-        private Int32 count = 2;
+        private ObservableCollection<LyricsItem> lyricsItemSet;
+        private Int32 wordsCount = 1;
+        private Int32 lastWordsIndex = 0;
+        private const Int32 wordsFocusShift = 15;
         private LyricsItemPageModel model;
         public LyricsItemPageModel Model
         {
@@ -52,51 +54,63 @@ namespace LyricsDisplay
         void HightLightWords()
         {
 
-
-            if (count < LyricsItemSet.Count && LyricsItemSet[count].StartSecond == -1)
-            {
-                LyricsItemSet[count - 1].Size = 22;
-                LyricsItemSet[count - 1].Color = "#FFFFFF";
-                count++;
-            }
             Int32 CurrentPlayTotalSeconds = Mp3Player.Position.Minutes * 60 + Mp3Player.Position.Seconds;
+
+            if (lyricsItemSet[wordsCount].StartSecond == -1)
+            {
+                wordsCount++;
+            }
+
             //Debug.WriteLine("Target Start: " + LyricsItemSet[count].StartSecond);
             //Debug.WriteLine("Current : " + CurrentPlayTotalSeconds);
-            if (count < LyricsItemSet.Count && LyricsItemSet[count].StartSecond == CurrentPlayTotalSeconds)
+            if (lyricsItemSet[wordsCount].StartSecond == CurrentPlayTotalSeconds)
             {
 
-                if (count == 0)
+                if (wordsCount == 1)
                 {
-                    LyricsItemSet[count].Size = 26;
-                    LyricsItemSet[count].Color = "#FF0000";
-                    count++;
+                    lyricsItemSet[wordsCount].Size = 25;
+                    lyricsItemSet[wordsCount].Color = "#FF0000";
+                    lastWordsIndex = wordsCount;
+                    wordsCount++;
                 }
                 else
                 {
-                    LyricsItemSet[count - 1].Size = 22;
-                    LyricsItemSet[count - 1].Color = "#FFFFFF";
+                    lyricsItemSet[lastWordsIndex].Size = 22;
+                    lyricsItemSet[lastWordsIndex].Color = "#FFFFFF";
 
-                    LyricsItemSet[count].Size = 26;
-                    LyricsItemSet[count].Color = "#FF0000";
-                    if (LyricsItemSet[count].EndSecond == -1)
+                    lyricsItemSet[wordsCount].Size = 25;
+                    lyricsItemSet[wordsCount].Color = "#FF0000";
+
+                    lastWordsIndex = wordsCount;
+                    if (lyricsItemSet[wordsCount].EndSecond == -1)
                     {
-                        count++;
+                        wordsCount++;
                     }
 
                 }
             }
 
-
             //if (count < LyricsItemSet.Count && LyricsItemSet[count].EndSecond != -1)
             //{
             //    //Debug.WriteLine("Target End: " + LyricsItemSet[count].EndSecond);
             //}
-            if (count < LyricsItemSet.Count && count > 1 && LyricsItemSet[count].EndSecond == CurrentPlayTotalSeconds)
+            if (wordsCount < lyricsItemSet.Count && wordsCount > 1 && lyricsItemSet[wordsCount].EndSecond == CurrentPlayTotalSeconds)
             {
-               // Debug.WriteLine("Target End");
-                LyricsItemSet[count].Size = 25;
-                LyricsItemSet[count].Color = "#FFFFFF";
-                count++;
+                lyricsItemSet[wordsCount].Size = 22;
+                lyricsItemSet[wordsCount].Color = "#FFFFFF";
+                wordsCount++;
+            }
+
+            if (wordsCount + wordsFocusShift < lyricsItemSet.Count)
+            {
+                LyricsListBox.SelectedIndex = wordsCount + wordsFocusShift;
+                ListBoxItem lbi = LyricsListBox.ItemContainerGenerator.
+                    ContainerFromIndex(LyricsListBox.SelectedIndex) as ListBoxItem;
+
+                if (lbi != null)
+                {
+                    lbi.Focus();
+                }
             }
 
         }
@@ -106,77 +120,59 @@ namespace LyricsDisplay
             //Debug.WriteLine("Target Start: " + LyricsItemSet[count].StartSecond);
             //Debug.WriteLine("Target End: " + LyricsItemSet[count].EndSecond);
             //count++;
-            HightLightWords();
-            //Debug.WriteLine(Mp3Player.Position.TotalMilliseconds);
-            //Debug.WriteLine(Mp3Player.Position.Seconds);
-            //if (count < LyricsItemSet.Count)
-            //{
-            //    if (count == 0)
-            //    {
-            //        LyricsItemSet[count].Size = 30;
-            //        LyricsItemSet[count].Color = "#FF0000";
-            //        count++;
-            //    }
-            //    else
-            //    {
-            //        LyricsItemSet[count - 1].Size = 25;
-            //        LyricsItemSet[count - 1].Color = "#FFFFFF";
-
-            //        LyricsItemSet[count].Size = 30;
-            //        LyricsItemSet[count].Color = "#FF0000";
-            //        count++;
-
-            //    }
-            //}
+            if (wordsCount < lyricsItemSet.Count)
+            {
+                HightLightWords();
+            }
         }
         private void LoadLyricsInfo()
         {
-            LyricsItemSet = new ObservableCollection<LyricsItem>();
-            LyricsItemSet.Add(new LyricsItem("Not Your Kind Of People", 0) { Size = 30,Color = "#0000FF"});
-            LyricsItemSet.Add(new LyricsItem());
-            LyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 17));
-            LyricsItemSet.Add(new LyricsItem("You seem kind of phoney.", 23));
-            LyricsItemSet.Add(new LyricsItem("Everything's a lie.", 27, 31));
-            LyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 33));
-            LyricsItemSet.Add(new LyricsItem("Something in your makeup.", 39));
-            LyricsItemSet.Add(new LyricsItem("Don't see eye to eye.", 43, 48));
-            LyricsItemSet.Add(new LyricsItem());
-            LyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 49));
-            LyricsItemSet.Add(new LyricsItem("Don't want to be like you.", 55));
-            LyricsItemSet.Add(new LyricsItem("Ever in our lives.", 59));
-            LyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 65));
-            LyricsItemSet.Add(new LyricsItem("We fight when you start talking.", 71));
-            LyricsItemSet.Add(new LyricsItem("There's nothing but white noise", 74,79));
-            LyricsItemSet.Add(new LyricsItem());
-            LyricsItemSet.Add(new LyricsItem("Ahhh.... Ahhh.... Ahhh.... Ahhh....", 80, 110));
-            LyricsItemSet.Add(new LyricsItem());
-            LyricsItemSet.Add(new LyricsItem("Running around trying to fit in, Wanting to be loved.", 143, 148));
-            LyricsItemSet.Add(new LyricsItem("It doesn't take much.", 150, 152));
-            LyricsItemSet.Add(new LyricsItem("For someone to shut you down.", 154));
-            LyricsItemSet.Add(new LyricsItem("When you build a shell,", 159));
-            LyricsItemSet.Add(new LyricsItem("Build an army in your mind.", 160));
-            LyricsItemSet.Add(new LyricsItem("You can't sit still.", 163));
-            LyricsItemSet.Add(new LyricsItem("And you don't like hanging round the crowd.", 164));
-            LyricsItemSet.Add(new LyricsItem("They don't understand", 169, 172));
-            LyricsItemSet.Add(new LyricsItem());
-            LyricsItemSet.Add(new LyricsItem("You dropped by as I was sleeping.", 175));
-            LyricsItemSet.Add(new LyricsItem("You came to see the whole commotion.", 183));
-            LyricsItemSet.Add(new LyricsItem("And when I woke I started laughing.", 190));
-            LyricsItemSet.Add(new LyricsItem("The jokes on me for not believing.", 198,202));
-            LyricsItemSet.Add(new LyricsItem());
-            LyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 205));
-            LyricsItemSet.Add(new LyricsItem("Speak a different language.", 210));
-            LyricsItemSet.Add(new LyricsItem("We see through your lies.", 215));
-            LyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 221));
-            LyricsItemSet.Add(new LyricsItem("Won't be cast as demons,", 226));
-            LyricsItemSet.Add(new LyricsItem("Creatures you despise.", 230,235));
-            LyricsItemSet.Add(new LyricsItem());
-            LyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 236));
-            LyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 243));
-            LyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 251));
-            LyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 258,263));
+            lyricsItemSet = new ObservableCollection<LyricsItem>();
+            lyricsItemSet.Add(new LyricsItem("Not Your Kind Of People", 0) { Size = 30,Color = "#0000FF"});
+            lyricsItemSet.Add(new LyricsItem());
+            lyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 17));
+            lyricsItemSet.Add(new LyricsItem("You seem kind of phoney.", 23));
+            lyricsItemSet.Add(new LyricsItem("Everything's a lie.", 27, 31));
+            lyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 33));
+            lyricsItemSet.Add(new LyricsItem("Something in your makeup.", 39));
+            lyricsItemSet.Add(new LyricsItem("Don't see eye to eye.", 43, 48));
+            lyricsItemSet.Add(new LyricsItem());
+            lyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 49));
+            lyricsItemSet.Add(new LyricsItem("Don't want to be like you.", 55));
+            lyricsItemSet.Add(new LyricsItem("Ever in our lives.", 59));
+            lyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 65));
+            lyricsItemSet.Add(new LyricsItem("We fight when you start talking.", 71));
+            lyricsItemSet.Add(new LyricsItem("There's nothing but white noise", 74,79));
+            lyricsItemSet.Add(new LyricsItem());
+            lyricsItemSet.Add(new LyricsItem("Ahhh.... Ahhh.... Ahhh.... Ahhh....", 80, 110));
+            lyricsItemSet.Add(new LyricsItem());
+            lyricsItemSet.Add(new LyricsItem("Running around trying to fit in, Wanting to be loved.", 143, 148));
+            lyricsItemSet.Add(new LyricsItem("It doesn't take much.", 150, 152));
+            lyricsItemSet.Add(new LyricsItem("For someone to shut you down.", 154));
+            lyricsItemSet.Add(new LyricsItem("When you build a shell,", 159));
+            lyricsItemSet.Add(new LyricsItem("Build an army in your mind.", 160));
+            lyricsItemSet.Add(new LyricsItem("You can't sit still.", 163));
+            lyricsItemSet.Add(new LyricsItem("And you don't like hanging round the crowd.", 164));
+            lyricsItemSet.Add(new LyricsItem("They don't understand", 169, 172));
+            lyricsItemSet.Add(new LyricsItem());
+            lyricsItemSet.Add(new LyricsItem("You dropped by as I was sleeping.", 175));
+            lyricsItemSet.Add(new LyricsItem("You came to see the whole commotion.", 183));
+            lyricsItemSet.Add(new LyricsItem("And when I woke I started laughing.", 190));
+            lyricsItemSet.Add(new LyricsItem("The jokes on me for not believing.", 198,204));
+            lyricsItemSet.Add(new LyricsItem());
+            lyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 205));
+            lyricsItemSet.Add(new LyricsItem("Speak a different language.", 210));
+            lyricsItemSet.Add(new LyricsItem("We see through your lies.", 215));
+            lyricsItemSet.Add(new LyricsItem("We are not your kind of people.", 221));
+            lyricsItemSet.Add(new LyricsItem("Won't be cast as demons,", 226));
+            lyricsItemSet.Add(new LyricsItem("Creatures you despise.", 230,235));
+            lyricsItemSet.Add(new LyricsItem());
+            lyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 236));
+            lyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 243));
+            lyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 251));
+            lyricsItemSet.Add(new LyricsItem("We are extraordinary people.", 258,263));
 
-            Model.Items = LyricsItemSet;
+            Model.Items = lyricsItemSet;
         }
         
     }
