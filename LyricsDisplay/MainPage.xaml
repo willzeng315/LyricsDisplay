@@ -20,6 +20,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel 包含應用程式的名稱和頁面標題-->
@@ -50,11 +51,11 @@
             </ListBox>
         </Grid>
         
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Slider Grid.Row="2" Name="timelineSlider" />
-            <TextBox x:Name="TimeLineMinute" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBox Text=":" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBox x:Name="TimeLineSecond" Style="{StaticResource PhoneTextSmallStyle}"/>
+            <Slider  Grid.Row="2" Name="timelineSlider" />
+        <StackPanel  x:Name="TitlePane2" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <TextBox x:Name="TimeLineMinute" />
+            <TextBox Text=":" />
+            <TextBox x:Name="TimeLineSecond" />
         </StackPanel>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
