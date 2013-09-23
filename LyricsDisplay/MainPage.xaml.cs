@@ -29,12 +29,17 @@ namespace LyricsDisplay
                 return model;
             }
         }
-
+        private Boolean playClicked = false;
         public MainPage()
         {
             InitializeComponent();
             DataContext = Model;
 
+           // appbarRewindButton = this.ApplicationBar.Buttons[0] as ApplicationBarIconButton;
+            appbarPlayAndPauseButton = this.ApplicationBar.Buttons[0] as ApplicationBarIconButton;
+            appbarStopButton = this.ApplicationBar.Buttons[1] as ApplicationBarIconButton;
+            //appbarEndButton = this.ApplicationBar.Buttons[3] as ApplicationBarIconButton;
+            
             DispatcherTimer Timer = new DispatcherTimer();
             Timer.Interval = TimeSpan.FromSeconds(0.5);
             Timer.Tick += OnTimerTick;
@@ -50,20 +55,63 @@ namespace LyricsDisplay
                 if (Model.CurrentPlayingIndex + LyricsItemPageModel.FocusShift < Model.Items.Count)
                 {
                     LyricsListBox.SelectedIndex = Model.CurrentPlayingIndex + LyricsItemPageModel.FocusShift;
-                    ListBoxItem lbItem = LyricsListBox.ItemContainerGenerator.ContainerFromIndex(LyricsListBox.SelectedIndex) as ListBoxItem;
-
-                    if (lbItem != null)
-                    {
-                        lbItem.Focus();
-                    }
+                    SetFocusListBoxItem(LyricsListBox.SelectedIndex);
                 }
+                timelineSlider.Maximum = Mp3Player.NaturalDuration.TimeSpan.TotalSeconds;
+                timelineSlider.Value = Mp3Player.Position.TotalSeconds;
+                TimeLineMinute.Text = Mp3Player.Position.Minutes.ToString();
+                TimeLineSecond.Text = Mp3Player.Position.Seconds.ToString();
+
             }
         }
 
         private void OnPhoneApplicationPageLoaded(object sender, RoutedEventArgs e)
         {
             Mp3Player.Source = new Uri("MP3/NotYourKindOfPeople.mp3", UriKind.Relative);
-            Mp3Player.Play();
+            
+        }
+        // ApplicationBar buttons
+        private void OnAppbarPlayAndPauseClick(object sender, EventArgs args)
+        {
+            if (!playClicked)
+            {
+                Mp3Player.Play();
+                appbarPlayAndPauseButton.IconUri = new Uri("Images/appbar.transport.pause.rest.png", UriKind.Relative);
+                appbarPlayAndPauseButton.Text = "Play";
+                appbarStopButton.IsEnabled = true;
+                playClicked = true;
+            }
+            else
+            {
+                Mp3Player.Pause();
+                appbarPlayAndPauseButton.IconUri = new Uri("Images/appbar.transport.play.rest.png", UriKind.Relative);
+                appbarPlayAndPauseButton.Text = "Pause";
+                playClicked = false;
+            }
+        }
+        private void OnAppbarStopClick(object sender, EventArgs args)
+        {
+            Mp3Player.Stop();
+            ResetPlayIcon();
+            SetFocusListBoxItem(0);
+            Model.CurrentPlayingIndex = 0;
+            timelineSlider.Value = 0;
+        }
+        private void ResetPlayIcon()
+        {
+            appbarPlayAndPauseButton.IconUri = new Uri("Images/appbar.transport.play.rest.png", UriKind.Relative);
+            appbarPlayAndPauseButton.Text = "Pause";
+            playClicked = false;
+            appbarStopButton.IsEnabled = false;
+        }
+        private void SetFocusListBoxItem(Int32 FocusIndex)
+        {
+            ListBoxItem lbItem = LyricsListBox.ItemContainerGenerator.ContainerFromIndex(FocusIndex) as ListBoxItem;
+
+            if (lbItem != null)
+            {
+                lbItem.Focus();
+            }
         }
     }
 }

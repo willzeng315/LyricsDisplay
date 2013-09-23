@@ -22,7 +22,7 @@ namespace LyricsDisplay
         protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
         {
             Boolean bRes = false;
-            if (!Object.Equals(storage, value))
+            if (!Object.Equals(storage, value)) //judge wheather the object 
             {
                 bRes = true;
                 storage = value;

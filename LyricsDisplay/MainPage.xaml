@@ -19,6 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel 包含應用程式的名稱和頁面標題-->
@@ -29,7 +30,7 @@
 
         <!--ContentPanel - 其他內容置於此-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <MediaElement Height="299" HorizontalAlignment="Center" Margin="28,6,0,0" Name="Mp3Player" VerticalAlignment="Top" Width="400" Volume="100"/>
+            <MediaElement Height="299" HorizontalAlignment="Center" Margin="28,6,0,0" Name="Mp3Player" VerticalAlignment="Top" Width="400" Volume="100" AutoPlay="False" />
             <ListBox Name ="LyricsListBox" ItemsSource="{Binding Items}" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
@@ -48,14 +49,28 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-
-        <!--取消註解以查看對齊格線，協助確保您的控制項
-            皆對齊共同的邊界。當影像在系統匣中顯示時的
-            上方邊界為 -32px。如果隱藏了系統匣，則將此值設為 0
-            (或完全移除邊界)。
-
-            在送出之前請移除此 XAML 和影像本身。-->
-        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Slider Grid.Row="2" Name="timelineSlider" />
+            <TextBox x:Name="TimeLineMinute" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBox Text=":" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBox x:Name="TimeLineSecond" Style="{StaticResource PhoneTextSmallStyle}"/>
+        </StackPanel>
     </Grid>
-
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+             <shell:ApplicationBarIconButton 
+                    x:Name="appbarPlayAndPauseButton"
+                    IconUri="Images/appbar.transport.play.rest.png" 
+                    Text="Play"
+                    IsEnabled="True"
+                    Click="OnAppbarPlayAndPauseClick" />
+            <shell:ApplicationBarIconButton 
+                    x:Name="appbarStopButton"
+                    IconUri="Images/appbar.transport.pause.rest.png" 
+                    Text="Stop"
+                    IsEnabled="False"
+                    Click="OnAppbarStopClick" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

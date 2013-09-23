@@ -153,7 +153,7 @@ namespace LyricsDisplay
         
         public Int32 CurrentPlayingIndex = 0;
         public Int32 LastIndex = 0;
-        public const Int32 FocusShift = 15;
+        public const Int32 FocusShift = 8;
 
         public void HightLightWords(TimeSpan position)
         {
