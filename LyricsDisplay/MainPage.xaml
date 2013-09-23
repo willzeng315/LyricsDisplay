@@ -11,7 +11,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    Loaded="OnPhoneApplicationPageLoaded">
 
     <!--LayoutRoot 是放置所有頁面的根資料格-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
