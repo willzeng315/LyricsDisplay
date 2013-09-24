@@ -43,6 +43,7 @@ namespace LyricsDisplay
             timelineSlider.Maximum = Mp3Player.NaturalDuration.TimeSpan.TotalSeconds;
             timelineSlider.Value = Mp3Player.Position.TotalSeconds;
             lyricsDisplayBox.DoHightLightWords(Mp3Player.Position);
+            lyricsDisplayBox.TimeLine = (Int32)Mp3Player.Position.TotalSeconds;
         }
         private void OnPhoneApplicationPageLoaded(object sender, RoutedEventArgs e)
         {

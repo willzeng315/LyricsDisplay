@@ -314,19 +314,23 @@ namespace LyricsDisplay
             }
         }
 
-        //private TimeSpan timeLine;
-        //public TimeSpan TimeLine
-        //{
-        //    get
-        //    {
-        //        return timeLine;
-        //    }
-        //    set
-        //    {
-        //        timeLine = value;
-        //        SetProperty(ref timeLine, value, "TimeLine");
-        //    }
-        //}
+        public static readonly DependencyProperty TimeLineProperty = DependencyProperty.Register("TimeLine", typeof(Int32), typeof(LyricsListPageBox), new PropertyMetadata(0, OnTimeLineChanged));
+        public Int32 TimeLine
+        {
+            get
+            {
+                return (Int32)GetValue(TimeLineProperty);
+            }
+            set
+            {
+                SetValue(TimeLineProperty, value);
+            }
+        }
+        static void OnTimeLineChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+
+            Debug.WriteLine((Int32)args.NewValue);
+        }
     
     }
 }
