@@ -112,8 +112,14 @@ namespace LyricsDisplay
             }
         }
     }
+
     public class LyricsItemPageModel : INotifyPropertyChanged
     {
+
+        public Int32 CurrentPlayingIndex = 0;
+        public Int32 LastIndex = 0;
+        public const Int32 FocusShift = 8;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
@@ -133,6 +139,7 @@ namespace LyricsDisplay
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
         public LyricsItemPageModel()
         {
             Items = new ObservableCollection<LyricsItem>();
@@ -167,7 +174,7 @@ namespace LyricsDisplay
             Items.Add(new LyricsItem("You dropped by as I was sleeping.", 175));
             Items.Add(new LyricsItem("You came to see the whole commotion.", 183));
             Items.Add(new LyricsItem("And when I woke I started laughing.", 190));
-            Items.Add(new LyricsItem("The jokes on me for not believing.", 198, 202));
+            Items.Add(new LyricsItem("The jokes on me for not believing.", 198, 204));
             Items.Add(new LyricsItem());
             Items.Add(new LyricsItem("We are not your kind of people.", 205));
             Items.Add(new LyricsItem("Speak a different language.", 210));
@@ -196,13 +203,15 @@ namespace LyricsDisplay
             }
         }
 
-        public Int32 CurrentPlayingIndex = 0;
-        public Int32 LastIndex = 0;
-        public const Int32 FocusShift = 8;
-
         public void HightLightWords(TimeSpan position)
         {
             Int32 CurrentPlayTotalSeconds = (Int32)position.TotalSeconds;
+            if (CurrentPlayTotalSeconds == 0)
+            {               
+                Items[(Int32)Math.Max((CurrentPlayingIndex-1),1)].IsPlaying = false;
+                CurrentPlayingIndex = 0;
+                LastIndex = 0;
+            }
 
             if (Items[CurrentPlayingIndex].StartSecond == -1)
             {
@@ -228,7 +237,6 @@ namespace LyricsDisplay
                     {
                         CurrentPlayingIndex++;
                     }
-
                 }
             }
 
@@ -260,6 +268,7 @@ namespace LyricsDisplay
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
         private LyricsItemPageModel model;
         public LyricsItemPageModel Model
         {
@@ -272,33 +281,26 @@ namespace LyricsDisplay
                 return model;
             }
         }
+
         public LyricsListPageBox()
         {
             InitializeComponent();
             DataContext = Model;
-
-            DispatcherTimer Timer = new DispatcherTimer();
-            Timer.Interval = TimeSpan.FromSeconds(3);
-            Timer.Tick += OnTimerTick;
-            Timer.Start();
         }
-        private void OnTimerTick(object sender, EventArgs e)
+
+        public void DoHightLightWords(TimeSpan TimeLine)
         {
-            Debug.WriteLine(Model.Items[0].Words);
-             if (Model.CurrentPlayingIndex < Model.Items.Count)
+            if (Model.CurrentPlayingIndex < Model.Items.Count)
             {
-                //Model.HightLightWords(Mp3Player.Position);
+                Model.HightLightWords(TimeLine);
 
                 if (Model.CurrentPlayingIndex + LyricsItemPageModel.FocusShift < Model.Items.Count)
                 {
                     LyricsListBox.SelectedIndex = Model.CurrentPlayingIndex + LyricsItemPageModel.FocusShift;
                     SetFocusListBoxItem(LyricsListBox.SelectedIndex);
                 }
-                //timelineSlider.Maximum = Mp3Player.NaturalDuration.TimeSpan.TotalSeconds;
-                //timelineSlider.Value = Mp3Player.Position.TotalSeconds;
                 //TimeLineMinute.Text = Mp3Player.Position.Minutes.ToString();
                 //TimeLineSecond.Text = Mp3Player.Position.Seconds.ToString();
-
             }
         }
 
@@ -311,6 +313,20 @@ namespace LyricsDisplay
                 lbItem.Focus();
             }
         }
+
+        //private TimeSpan timeLine;
+        //public TimeSpan TimeLine
+        //{
+        //    get
+        //    {
+        //        return timeLine;
+        //    }
+        //    set
+        //    {
+        //        timeLine = value;
+        //        SetProperty(ref timeLine, value, "TimeLine");
+        //    }
+        //}
     
     }
 }

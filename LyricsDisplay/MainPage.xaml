@@ -33,7 +33,7 @@
         <!--ContentPanel - 其他內容置於此-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <MediaElement Height="299" HorizontalAlignment="Center" Margin="28,6,0,0" Name="Mp3Player" VerticalAlignment="Top" Width="400" Volume="100" AutoPlay="False" />
-            <local:LyricsListPageBox x:Name="LyricsUC" />
+            <local:LyricsListPageBox x:Name="LyricsDisplayUC" />
         </Grid>
         
             <Slider  Grid.Row="2" Name="timelineSlider" />
