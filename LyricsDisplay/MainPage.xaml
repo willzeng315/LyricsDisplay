@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:LyricsDisplay"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -20,7 +21,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <!--<RowDefinition Height="Auto"/>-->
         </Grid.RowDefinitions>
 
         <!--TitlePanel 包含應用程式的名稱和頁面標題-->
@@ -32,31 +33,15 @@
         <!--ContentPanel - 其他內容置於此-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <MediaElement Height="299" HorizontalAlignment="Center" Margin="28,6,0,0" Name="Mp3Player" VerticalAlignment="Top" Width="400" Volume="100" AutoPlay="False" />
-            <ListBox Name ="LyricsListBox" ItemsSource="{Binding Items}" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" ></Setter>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <!--<Grid Background="{StaticResource PhoneBackgroundBrush}" Margin="12,0,0,10" HorizontalAlignment="Stretch">-->
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding Words}"   
-                                   FontSize="{Binding IsPlaying, Converter={StaticResource BooleanToSize}}" 
-                                   Foreground="{Binding IsPlaying, Converter={StaticResource BooleanToColor}}" 
-                                   TextWrapping="Wrap"/>
-                        <!--</Grid>-->
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <local:LyricsListPageBox x:Name="LyricsUC" />
         </Grid>
         
             <Slider  Grid.Row="2" Name="timelineSlider" />
-        <StackPanel  x:Name="TitlePane2" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+        <!--<StackPanel  x:Name="TitlePane2" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
             <TextBox x:Name="TimeLineMinute" />
             <TextBox Text=":" />
             <TextBox x:Name="TimeLineSecond" />
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>
@@ -68,7 +53,7 @@
                     Click="OnAppbarPlayAndPauseClick" />
             <shell:ApplicationBarIconButton 
                     x:Name="appbarStopButton"
-                    IconUri="Images/appbar.transport.pause.rest.png" 
+                    IconUri="Images/appbar.transport.stop.rest.png" 
                     Text="Stop"
                     IsEnabled="False"
                     Click="OnAppbarStopClick" />

@@ -97,7 +97,9 @@
     <Compile Include="BooleanToColorConverter.cs" />
     <Compile Include="BooleanToSizeConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="LyricsModel.cs" />
+    <Compile Include="LyricsListPageBox.xaml.cs">
+      <DependentUpon>LyricsListPageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -113,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="LyricsListPageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,6 +154,7 @@
     <Content Include="Images\appbar.transport.pause.rest.png" />
     <Content Include="Images\appbar.transport.play.rest.png" />
     <Content Include="Images\appbar.transport.rew.rest.png" />
+    <Content Include="Images\appbar.transport.stop.rest.png" />
     <Content Include="MP3\NotYourKindOfPeople.mp3" />
     <Content Include="MP3\NotYourKindOfPeople.txt" />
   </ItemGroup>

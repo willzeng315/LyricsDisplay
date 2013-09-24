@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="LyricsDisplay.LyricsListPageBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+         <ListBox Name ="LyricsListBox" ItemsSource="{Binding Items}" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" ></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding Words}"  TextWrapping="Wrap" 
+                                   Foreground="{Binding IsPlaying, Converter={StaticResource BooleanToColor}}" />
+                    <!-- FontSize="{Binding IsPlaying, Converter={StaticResource BooleanToSize}}"--> 
+                                   
+                  </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>
