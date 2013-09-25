@@ -17,17 +17,17 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <StackPanel>
-                <Image Source="{Binding ImagePath}" x:Name="Cover" Width="300" Height="300"/>
+                <Image Source="{Binding ImagePath}" x:Name="Cover" Width="350" Height="350"/>
                 <local:TimeLineSlider x:Name="TimeLineSlider"/>
                 <TextBlock Text="{Binding SongName}" FontSize="30" Foreground="Blue" HorizontalAlignment="Center"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
             <StackPanel>
-                <Border Margin="0,10,0,0" BorderThickness="1" Width="99" Height="99" BorderBrush="Beige" Background="Beige"/>
-                <Border Margin="0,10,0,0" BorderThickness="1" Width="99" Height="99" BorderBrush="Green" Background="Green"/>
-                <Border Margin="0,10,0,0" BorderThickness="1" Width="99" Height="99" BorderBrush="Aqua" Background="Aqua"/>
-                <Border Margin="0,10,0,0" BorderThickness="1" Width="99" Height="99" BorderBrush="SandyBrown" Background="SandyBrown" />
+                <Border Margin="0,30,0,0" BorderThickness="1" Width="49" Height="49" BorderBrush="Beige" Background="Beige"/>
+                <Border Margin="0,30,0,0" BorderThickness="1" Width="49" Height="49" BorderBrush="Green" Background="Green"/>
+                <Border Margin="0,30,0,0" BorderThickness="1" Width="49" Height="49" BorderBrush="Aqua" Background="Aqua"/>
+                <TextBlock Text="詞" Margin="0,30,0,0"  HorizontalAlignment="Center" FontSize="45" ManipulationStarted="OnChangeToLyrics"/>
             </StackPanel>
         </Grid>
         

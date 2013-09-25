@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
 namespace LyricsDisplay
 {
@@ -47,7 +48,6 @@ namespace LyricsDisplay
 
         public void SetDataContext()
         {
-
             DataContext = this;
         }
 
@@ -76,6 +76,17 @@ namespace LyricsDisplay
             {
                 SetProperty(ref songName, value, "SongName");
             }
+        }
+
+        public Boolean IsChangeToLyrics
+        {
+            set;
+            get;
+        }
+
+        private void OnChangeToLyrics(Object sender, System.Windows.Input.ManipulationStartedEventArgs e)
+        {
+            IsChangeToLyrics = true;
         }
     }
 }

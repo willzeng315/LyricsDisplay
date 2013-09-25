@@ -37,7 +37,6 @@ namespace LyricsDisplay
             Timer.Interval = TimeSpan.FromSeconds(0.5);
             Timer.Tick += OnTimerTick;
             Timer.Start();
-            
         }
 
         private void OnTimerTick(Object sender, EventArgs e)
@@ -101,12 +100,8 @@ namespace LyricsDisplay
             LyricsDisplayUC.Items.Add(new LyricsItem("We are extraordinary people.", 251));
             LyricsDisplayUC.Items.Add(new LyricsItem("We are extraordinary people.", 258, 263));
 
+            LyricsDisplayUC.LyricsTitle = LyricsDisplayUC.Items[0].Words;
             
-        }
-
-        private void OnPhoneApplicationPageLoaded(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine("OnPhoneApplicationPageLoaded");
         }
 
         private void OnAppbarPlayAndPauseClick(object sender, EventArgs args)
@@ -127,18 +122,29 @@ namespace LyricsDisplay
                 playClicked = false;
             }
         }
-        private void OnAppbarStopClick(object sender, EventArgs args)
+
+        private void OnAppbarStopClick(Object sender, EventArgs args)
         {
             Mp3Player.Stop();
             ResetPlayIcon();
-            //TimelineSlider.Value = 0;
         }
+
         private void ResetPlayIcon()
         {
             appbarPlayAndPauseButton.IconUri = new Uri("Images/appbar.transport.play.rest.png", UriKind.Relative);
             appbarPlayAndPauseButton.Text = "Pause";
             playClicked = false;
             appbarStopButton.IsEnabled = false;
+        }
+
+        private void OnPivotManipulationStarted(Object sender, System.Windows.Input.ManipulationStartedEventArgs e)
+        {
+            Pivot pivot = sender as Pivot;
+            if (LyricsInfo.IsChangeToLyrics)
+            {
+                pivot.SelectedIndex = 1;
+                LyricsInfo.IsChangeToLyrics = false;
+            }
         }
      
     }

@@ -17,7 +17,7 @@
     <!--LayoutRoot 是放置所有頁面的根資料格-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--樞紐分析控制項-->
-        <phone:Pivot Title="應用程式">
+        <phone:Pivot Title="應用程式" ManipulationStarted="OnPivotManipulationStarted">
             <!--樞紐分析項目 1-->
             <phone:PivotItem Header="歌曲資訊">
                 <local:LyricsInformation x:Name="LyricsInfo"/>
@@ -41,7 +41,6 @@
                 </Grid>
             </phone:PivotItem>
         </phone:Pivot>
-
 
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>

@@ -36,6 +36,7 @@ namespace LyricsDisplay
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
         public LyricsItem(String words, Int32 startSecond)
         {
             Words = words;
@@ -139,6 +140,7 @@ namespace LyricsDisplay
         private Int32 currentPlayingIndex = 2;
         private Int32 lastIndex = 0;
         private const Int32 focusShift = 8;
+
         public LyricsListPageBox()
         {
             InitializeComponent();
@@ -161,9 +163,7 @@ namespace LyricsDisplay
 
         public void SetDataContext()
         {
-            LyricsTitle = Items[0].Words;
             DataContext = this;
-            
         }
 
         public void HightLightWords(Int32 CurrentPlayTotalSeconds)
