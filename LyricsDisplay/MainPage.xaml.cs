@@ -24,10 +24,14 @@ namespace LyricsDisplay
         {
             
             InitializeComponent();
+
             LyricsReader();
+            LyricsInfoReader();
+            LyricsDisplayUC.SetDataContext();
+            LyricsInfo.SetDataContext();
+
             appbarPlayAndPauseButton = this.ApplicationBar.Buttons[0] as ApplicationBarIconButton;
             appbarStopButton = this.ApplicationBar.Buttons[1] as ApplicationBarIconButton;
-
             
             DispatcherTimer Timer = new DispatcherTimer();
             Timer.Interval = TimeSpan.FromSeconds(0.5);
@@ -39,13 +43,14 @@ namespace LyricsDisplay
         private void OnTimerTick(Object sender, EventArgs e)
         {
             LyricsTimeLineSlider.SetTimeLinePosition(Mp3Player);
-            //TimelineSlider.Maximum = Mp3Player.NaturalDuration.TimeSpan.TotalSeconds;
-            //TimelineSlider.Value = Mp3Player.Position.TotalSeconds;
-            //CurrentTimeLineMinute.Text = Mp3Player.Position.Minutes.ToString();
-            //CurrentTimeLineSecond.Text = Mp3Player.Position.Seconds.ToString();
-            //TotalTimeLineMinute.Text = Mp3Player.NaturalDuration.TimeSpan.Minutes.ToString();
-            //TotalTimeLineSecond.Text = Mp3Player.NaturalDuration.TimeSpan.Seconds.ToString();
+            LyricsInfo.SetTimeLinePosition(Mp3Player);
             LyricsDisplayUC.DoHightLightWords((Int32)Mp3Player.Position.TotalSeconds);
+        }
+
+        private void LyricsInfoReader()
+        {
+            LyricsInfo.SongName = LyricsDisplayUC.Items[0].Words;
+            LyricsInfo.ImagePath = "Images/Garbage_NotYouKindOfPeople.jpg";
         }
 
         private void LyricsReader()
@@ -96,7 +101,7 @@ namespace LyricsDisplay
             LyricsDisplayUC.Items.Add(new LyricsItem("We are extraordinary people.", 251));
             LyricsDisplayUC.Items.Add(new LyricsItem("We are extraordinary people.", 258, 263));
 
-            LyricsDisplayUC.SetDataContext();
+            
         }
 
         private void OnPhoneApplicationPageLoaded(object sender, RoutedEventArgs e)

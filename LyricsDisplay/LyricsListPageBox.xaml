@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding LyricsTitle}" FontSize="30" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Text="{Binding LyricsTitle}" FontSize="30" Foreground="Blue" HorizontalAlignment="Center"/>
         <ListBox Name ="LyricsListBox" Grid.Row="1" ItemsSource="{Binding Items}" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">

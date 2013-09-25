@@ -20,16 +20,15 @@
         <phone:Pivot Title="應用程式">
             <!--樞紐分析項目 1-->
             <phone:PivotItem Header="歌曲資訊">
-
+                <local:LyricsInformation x:Name="LyricsInfo"/>
             </phone:PivotItem>
 
             <!--樞紐分析項目 2-->
-            <phone:PivotItem Header="動態歌詞顯示">
+            <phone:PivotItem Header="歌詞">
                 <Grid x:Name="LayoutRoot2" Background="Transparent">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
