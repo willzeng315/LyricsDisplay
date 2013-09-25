@@ -142,16 +142,16 @@ namespace LyricsDisplay
         public LyricsListPageBox()
         {
             InitializeComponent();
-
+            
         }
-
+        
         public void DoHightLightWords(Int32 TimeLine)
         {
-            if (currentPlayingIndex < Items.Count)
+            if ( currentPlayingIndex < Items.Count)
             {
                 HightLightWords(TimeLine);
 
-                if (currentPlayingIndex + focusShift < Items.Count)
+                if (TimeLine != 0 && currentPlayingIndex + focusShift < Items.Count)
                 {
                     LyricsListBox.SelectedIndex = currentPlayingIndex + focusShift;
                     SetFocusListBoxItem(LyricsListBox.SelectedIndex);
@@ -161,9 +161,9 @@ namespace LyricsDisplay
             }
         }
 
-        private void lyricsReader()
+        public void SetDataContext()
         {
-            
+            DataContext = this;
         }
 
         public void HightLightWords(Int32 CurrentPlayTotalSeconds)

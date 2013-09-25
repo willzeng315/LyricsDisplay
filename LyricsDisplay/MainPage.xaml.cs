@@ -28,7 +28,7 @@ namespace LyricsDisplay
             appbarPlayAndPauseButton = this.ApplicationBar.Buttons[0] as ApplicationBarIconButton;
             appbarStopButton = this.ApplicationBar.Buttons[1] as ApplicationBarIconButton;
 
-            DataContext = LyricsDisplayUC;
+            
             DispatcherTimer Timer = new DispatcherTimer();
             Timer.Interval = TimeSpan.FromSeconds(0.5);
             Timer.Tick += OnTimerTick;
@@ -90,6 +90,7 @@ namespace LyricsDisplay
             LyricsDisplayUC.Items.Add(new LyricsItem("We are extraordinary people.", 243));
             LyricsDisplayUC.Items.Add(new LyricsItem("We are extraordinary people.", 251));
             LyricsDisplayUC.Items.Add(new LyricsItem("We are extraordinary people.", 258, 263));
+            LyricsDisplayUC.SetDataContext();
         }
 
         private void OnPhoneApplicationPageLoaded(object sender, RoutedEventArgs e)
@@ -99,6 +100,7 @@ namespace LyricsDisplay
 
         private void OnAppbarPlayAndPauseClick(object sender, EventArgs args)
         {
+            //DataContext = LyricsDisplayUC;
             if (!playClicked)
             {
                 Mp3Player.Play();
@@ -119,8 +121,6 @@ namespace LyricsDisplay
         {
             Mp3Player.Stop();
             ResetPlayIcon();
-            //SetFocusListBoxItem(0);
-            //Model.CurrentPlayingIndex = 0;
             timelineSlider.Value = 0;
         }
         private void ResetPlayIcon()
