@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="LyricsDisplay.TimeLineSlider"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Slider  Grid.Row="0" Name="TimelineSlider" Foreground="Blue"/>
+        <Grid Grid.Row="1" Margin="20,-40,20,-20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel  Grid.Column="0"  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                <TextBlock x:Name="CurrentTimeLineMinute" FontSize="15" />
+                <TextBlock Text=":" FontSize="15" />
+                <TextBlock x:Name="CurrentTimeLineSecond" FontSize="15" />
+            </StackPanel>
+            <StackPanel  Grid.Column="1"  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" >
+                <TextBlock x:Name="TotalTimeLineMinute" FontSize="15" />
+                <TextBlock Text=":" FontSize="15" />
+                <TextBlock x:Name="TotalTimeLineSecond" FontSize="15" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -10,11 +10,12 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot" >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-         <ListBox Name ="LyricsListBox" ItemsSource="{Binding Items}" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding LyricsTitle}" FontSize="30" HorizontalAlignment="Center"/>
+        <ListBox Name ="LyricsListBox" Grid.Row="1" ItemsSource="{Binding Items}" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" ></Setter>

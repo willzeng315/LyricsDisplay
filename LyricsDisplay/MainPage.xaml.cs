@@ -38,8 +38,13 @@ namespace LyricsDisplay
 
         private void OnTimerTick(Object sender, EventArgs e)
         {
-            timelineSlider.Maximum = Mp3Player.NaturalDuration.TimeSpan.TotalSeconds;
-            timelineSlider.Value = Mp3Player.Position.TotalSeconds;
+            LyricsTimeLineSlider.SetTimeLinePosition(Mp3Player);
+            //TimelineSlider.Maximum = Mp3Player.NaturalDuration.TimeSpan.TotalSeconds;
+            //TimelineSlider.Value = Mp3Player.Position.TotalSeconds;
+            //CurrentTimeLineMinute.Text = Mp3Player.Position.Minutes.ToString();
+            //CurrentTimeLineSecond.Text = Mp3Player.Position.Seconds.ToString();
+            //TotalTimeLineMinute.Text = Mp3Player.NaturalDuration.TimeSpan.Minutes.ToString();
+            //TotalTimeLineSecond.Text = Mp3Player.NaturalDuration.TimeSpan.Seconds.ToString();
             LyricsDisplayUC.DoHightLightWords((Int32)Mp3Player.Position.TotalSeconds);
         }
 
@@ -90,6 +95,7 @@ namespace LyricsDisplay
             LyricsDisplayUC.Items.Add(new LyricsItem("We are extraordinary people.", 243));
             LyricsDisplayUC.Items.Add(new LyricsItem("We are extraordinary people.", 251));
             LyricsDisplayUC.Items.Add(new LyricsItem("We are extraordinary people.", 258, 263));
+
             LyricsDisplayUC.SetDataContext();
         }
 
@@ -100,7 +106,6 @@ namespace LyricsDisplay
 
         private void OnAppbarPlayAndPauseClick(object sender, EventArgs args)
         {
-            //DataContext = LyricsDisplayUC;
             if (!playClicked)
             {
                 Mp3Player.Play();
@@ -121,7 +126,7 @@ namespace LyricsDisplay
         {
             Mp3Player.Stop();
             ResetPlayIcon();
-            timelineSlider.Value = 0;
+            //TimelineSlider.Value = 0;
         }
         private void ResetPlayIcon()
         {

@@ -136,13 +136,13 @@ namespace LyricsDisplay
             }
         }
 
-        private Int32 currentPlayingIndex = 0;
+        private Int32 currentPlayingIndex = 2;
         private Int32 lastIndex = 0;
         private const Int32 focusShift = 8;
         public LyricsListPageBox()
         {
             InitializeComponent();
-            
+
         }
         
         public void DoHightLightWords(Int32 TimeLine)
@@ -156,14 +156,14 @@ namespace LyricsDisplay
                     LyricsListBox.SelectedIndex = currentPlayingIndex + focusShift;
                     SetFocusListBoxItem(LyricsListBox.SelectedIndex);
                 }
-                //TimeLineMinute.Text = Mp3Player.Position.Minutes.ToString();
-                //TimeLineSecond.Text = Mp3Player.Position.Seconds.ToString();
             }
         }
 
         public void SetDataContext()
         {
+            LyricsTitle = Items[0].Words;
             DataContext = this;
+            
         }
 
         public void HightLightWords(Int32 CurrentPlayTotalSeconds)
@@ -208,6 +208,7 @@ namespace LyricsDisplay
                 currentPlayingIndex++;
             }
         }
+
         private void SetFocusListBoxItem(Int32 FocusIndex)
         {
             ListBoxItem lbItem = LyricsListBox.ItemContainerGenerator.ContainerFromIndex(FocusIndex) as ListBoxItem;
@@ -217,6 +218,7 @@ namespace LyricsDisplay
                 lbItem.Focus();
             }
         }
+
         private ObservableCollection<LyricsItem> items = null;
         public ObservableCollection<LyricsItem> Items
         {
@@ -228,6 +230,20 @@ namespace LyricsDisplay
             {
                 items = value;
                 SetProperty(ref items, value, "Items");
+            }
+        }
+
+        private String lyricsTitle = null;
+        public String LyricsTitle
+        {
+            get
+            {
+                return lyricsTitle;
+            }
+            set
+            {
+                lyricsTitle = value;
+                SetProperty(ref lyricsTitle, value, "LyricsTitle");
             }
         }
 

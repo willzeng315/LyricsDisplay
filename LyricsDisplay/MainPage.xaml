@@ -20,17 +20,7 @@
         <phone:Pivot Title="應用程式">
             <!--樞紐分析項目 1-->
             <phone:PivotItem Header="歌曲資訊">
-                <!--文字會換行的雙行清單-->
-                <!--<phone:LongListSelector Margin="0,0,-12,0" ItemsSource="{Binding Items}">
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,17">
-                                <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>-->
+
             </phone:PivotItem>
 
             <!--樞紐分析項目 2-->
@@ -40,23 +30,20 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
-                        <!--<RowDefinition Height="Auto"/>-->
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
                         <MediaElement Name="Mp3Player" VerticalAlignment="Top" Volume="100" AutoPlay="False" Source="MP3/NotYourKindOfPeople.mp3"/>
                         <local:LyricsListPageBox x:Name="LyricsDisplayUC" />
                     </Grid>
-
-                    <Slider  Grid.Row="2" Name="timelineSlider" />
+                    <Grid Grid.Row="2">
+                        <local:TimeLineSlider x:Name="LyricsTimeLineSlider"/>
+                    </Grid>
                 </Grid>
             </phone:PivotItem>
         </phone:Pivot>
-        
-        <!--<StackPanel  x:Name="TitlePane2" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <TextBox x:Name="TimeLineMinute" />
-            <TextBox Text=":" />
-            <TextBox x:Name="TimeLineSecond" />
-        </StackPanel>-->
+
+
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="False">
