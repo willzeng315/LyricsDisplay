@@ -12,31 +12,46 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True"
-    Loaded="OnPhoneApplicationPageLoaded">
+    shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot 是放置所有頁面的根資料格-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <!--<RowDefinition Height="Auto"/>-->
-        </Grid.RowDefinitions>
+        <!--樞紐分析控制項-->
+        <phone:Pivot Title="應用程式">
+            <!--樞紐分析項目 1-->
+            <phone:PivotItem Header="歌曲資訊">
+                <!--文字會換行的雙行清單-->
+                <!--<phone:LongListSelector Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,17">
+                                <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>-->
+            </phone:PivotItem>
 
-        <!--TitlePanel 包含應用程式的名稱和頁面標題-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="應用程式" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="動態歌詞顯示" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+            <!--樞紐分析項目 2-->
+            <phone:PivotItem Header="動態歌詞顯示">
+                <Grid x:Name="LayoutRoot2" Background="Transparent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <!--<RowDefinition Height="Auto"/>-->
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+                        <MediaElement Name="Mp3Player" VerticalAlignment="Top" Volume="100" AutoPlay="False" Source="MP3/NotYourKindOfPeople.mp3"/>
+                        <local:LyricsListPageBox x:Name="LyricsDisplayUC" />
+                    </Grid>
 
-        <!--ContentPanel - 其他內容置於此-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <MediaElement Height="299" HorizontalAlignment="Center" Margin="28,6,0,0" Name="Mp3Player" VerticalAlignment="Top" Width="400" Volume="100" AutoPlay="False" />
-            <local:LyricsListPageBox x:Name="LyricsDisplayUC" />
-        </Grid>
+                    <Slider  Grid.Row="2" Name="timelineSlider" />
+                </Grid>
+            </phone:PivotItem>
+        </phone:Pivot>
         
-            <Slider  Grid.Row="2" Name="timelineSlider" />
         <!--<StackPanel  x:Name="TitlePane2" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
             <TextBox x:Name="TimeLineMinute" />
             <TextBox Text=":" />
@@ -44,7 +59,7 @@
         </StackPanel>-->
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar>
+        <shell:ApplicationBar IsMenuEnabled="False">
              <shell:ApplicationBarIconButton 
                     x:Name="appbarPlayAndPauseButton"
                     IconUri="Images/appbar.transport.play.rest.png" 
