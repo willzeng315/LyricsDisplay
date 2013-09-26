@@ -17,6 +17,7 @@ namespace LyricsDisplay
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        // this is master trunk
         private Boolean isPlayClicked = true;
 
         public MainPage()
