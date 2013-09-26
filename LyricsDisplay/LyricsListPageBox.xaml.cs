@@ -170,7 +170,16 @@ namespace LyricsDisplay
         {
             if (CurrentPlayTotalSeconds == 0)
             {
-                Items[(Int32)Math.Max((currentPlayingIndex - 1), 1)].IsPlaying = false;
+                Debug.WriteLine(currentPlayingIndex);
+                if (Items[currentPlayingIndex].EndSecond == -1)
+                {
+                    Items[(Int32)Math.Max((currentPlayingIndex - 1), 1)].IsPlaying = false;
+                }
+                else
+                {
+                    Items[currentPlayingIndex].IsPlaying = false;
+                }
+                
                 currentPlayingIndex = 0;
                 lastIndex = 0;
             }

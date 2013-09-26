@@ -53,7 +53,7 @@
                     Click="OnAppbarPreviousClick" />
             <shell:ApplicationBarIconButton 
                     x:Name="appbarPlayAndPauseButton"
-                    IconUri="Images/appbar.transport.play.rest.png" 
+                    IconUri="Images/appbar.transport.pause.rest.png" 
                     Text="Play"
                     IsEnabled="True"
                     Click="OnAppbarPlayAndPauseClick" />

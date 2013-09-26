@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Slider  Grid.Row="0" Name="TimelineSlider" Foreground="Blue"/>
+        <Slider  Grid.Row="0" Name="TimelineSlider" Foreground="#00ADDA"/>
         <Grid Grid.Row="1" Margin="20,-40,20,-20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

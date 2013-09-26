@@ -18,18 +18,13 @@ namespace LyricsDisplay
     public partial class MainPage : PhoneApplicationPage
     {
 
-        private Boolean playClicked = false;
-        
-
+        private Boolean isPlayClicked = true;
 
         public MainPage()
         {
             
             InitializeComponent();
 
-            
-
-            //LyricsInfoReader();
             LyricsDisplayUC.Items = LyricsReader1();
             LyricsDisplayUC.SetDataContext();
             LyricsInfo.SetDataContext();
@@ -50,12 +45,11 @@ namespace LyricsDisplay
             LyricsTimeLineSlider.SetTimeLinePosition(Mp3Player);
             LyricsInfo.SetTimeLinePosition(Mp3Player);
             LyricsDisplayUC.DoHightLightWords((Int32)Mp3Player.Position.TotalSeconds);
+            if (Mp3Player.CurrentState.ToString() == "Paused")
+            {
+                ResetPlayIcon();
+            }
         }
-
-        //private void LyricsInfoReader()
-        //{
-
-        //}
 
         private ObservableCollection<LyricsItem> LyricsReader2()
         {
@@ -104,9 +98,7 @@ namespace LyricsDisplay
             LyricsInfo.SongName = Items[0].Words;
             LyricsInfo.ImagePath = "Images/王菲_紅豆.jpg";
 
-
             return Items;
-           
         }
 
         private ObservableCollection<LyricsItem> LyricsReader1()
@@ -161,27 +153,24 @@ namespace LyricsDisplay
             LyricsInfo.SongName = Items[0].Words;
             LyricsInfo.ImagePath = "Images/Garbage_NotYouKindOfPeople.jpg";
 
-
             return Items;
-            
         }
 
         private void OnAppbarPlayAndPauseClick(Object sender, EventArgs args)
         {
-
-            if (!playClicked)
+           if (!isPlayClicked)
             {   
                 Mp3Player.Play();
                 appbarPlayAndPauseButton.IconUri = new Uri("Images/appbar.transport.pause.rest.png", UriKind.Relative);
                 appbarPlayAndPauseButton.Text = "Play";
-                playClicked = true;
+                isPlayClicked = true;
             }
             else
             {
                 Mp3Player.Pause();
                 appbarPlayAndPauseButton.IconUri = new Uri("Images/appbar.transport.play.rest.png", UriKind.Relative);
                 appbarPlayAndPauseButton.Text = "Pause";
-                playClicked = false;
+                isPlayClicked = false;
             }
         }
 
@@ -202,8 +191,8 @@ namespace LyricsDisplay
         private void ResetPlayIcon()
         {
             appbarPlayAndPauseButton.IconUri = new Uri("Images/appbar.transport.play.rest.png", UriKind.Relative);
-            appbarPlayAndPauseButton.Text = "Pause";
-            playClicked = false;
+            appbarPlayAndPauseButton.Text = "play";
+            isPlayClicked = false;
         }
 
         private void OnPivotManipulationStarted(Object sender, System.Windows.Input.ManipulationStartedEventArgs e)

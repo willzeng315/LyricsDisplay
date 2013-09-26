@@ -51,7 +51,6 @@ namespace LyricsDisplay
             DataContext = this;
         }
 
-
         private String imagePath;
         public String ImagePath
         {
