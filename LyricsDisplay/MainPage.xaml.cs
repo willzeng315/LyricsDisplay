@@ -17,7 +17,6 @@ namespace LyricsDisplay
 {
     public partial class MainPage : PhoneApplicationPage
     {
-
         private Boolean isPlayClicked = true;
 
         public MainPage()
