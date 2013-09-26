@@ -12,12 +12,12 @@ namespace LyricsDisplay
 {
     public class BooleanToColorConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(Object value, Type targetType, Object parameter, CultureInfo culture)
         {
             var val = (bool)value;
             return new SolidColorBrush(val ? Colors.Red : Colors.White);
         }
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture)
         {
             return value;
         }

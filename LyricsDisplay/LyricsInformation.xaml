@@ -23,11 +23,11 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
-            <StackPanel>
+            <StackPanel x:Name="lyrics">
                 <Border Margin="0,30,0,0" BorderThickness="1" Width="49" Height="49" BorderBrush="Beige" Background="Beige"/>
                 <Border Margin="0,30,0,0" BorderThickness="1" Width="49" Height="49" BorderBrush="Green" Background="Green"/>
                 <Border Margin="0,30,0,0" BorderThickness="1" Width="49" Height="49" BorderBrush="Aqua" Background="Aqua"/>
-                <TextBlock Text="詞" Margin="0,30,0,0"  HorizontalAlignment="Center" FontSize="45" ManipulationStarted="OnChangeToLyrics"/>
+                <TextBlock  Text="詞" Margin="0,30,0,0"  HorizontalAlignment="Center" FontSize="45" ManipulationStarted="OnChangeToLyrics"/>
             </StackPanel>
         </Grid>
         

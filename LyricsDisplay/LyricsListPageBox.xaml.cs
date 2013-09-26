@@ -224,11 +224,12 @@ namespace LyricsDisplay
         {
             get
             {
+                LyricsTitle = items[0].Words;
                 return items;
             }
             set
             {
-                items = value;
+
                 SetProperty(ref items, value, "Items");
             }
         }
@@ -242,7 +243,6 @@ namespace LyricsDisplay
             }
             set
             {
-                lyricsTitle = value;
                 SetProperty(ref lyricsTitle, value, "LyricsTitle");
             }
         }

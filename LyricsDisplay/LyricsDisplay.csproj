@@ -170,8 +170,10 @@
     <Content Include="Images\appbar.transport.rew.rest.png" />
     <Content Include="Images\appbar.transport.stop.rest.png" />
     <Content Include="Images\Garbage_NotYouKindOfPeople.jpg" />
+    <Content Include="Images\王菲_紅豆.jpg" />
     <Content Include="MP3\NotYourKindOfPeople.mp3" />
     <Content Include="MP3\NotYourKindOfPeople.txt" />
+    <Content Include="MP3\紅豆.mp3" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">

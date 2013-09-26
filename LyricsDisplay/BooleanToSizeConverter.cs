@@ -10,11 +10,11 @@ namespace LyricsDisplay
 {
     public class BooleanToSizeConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(Object value, Type targetType, Object parameter, CultureInfo culture)
         {
             return (Boolean)value ? (Int32)25 : (Int32)22;
         }
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture)
         {
             return value;
         }

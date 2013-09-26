@@ -32,7 +32,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-                        <MediaElement Name="Mp3Player" VerticalAlignment="Top" Volume="100" AutoPlay="False" Source="MP3/NotYourKindOfPeople.mp3"/>
+                        <MediaElement Name="Mp3Player" VerticalAlignment="Top" Volume="100"/>
                         <local:LyricsListPageBox x:Name="LyricsDisplayUC" />
                     </Grid>
                     <Grid Grid.Row="2">
@@ -45,18 +45,30 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="False">
-             <shell:ApplicationBarIconButton 
+            <shell:ApplicationBarIconButton 
+                    x:Name="appbarPreviousButton"
+                    IconUri="Images/appbar.transport.rew.rest.png" 
+                    Text="Stop"
+                    IsEnabled="True"
+                    Click="OnAppbarPreviousClick" />
+            <shell:ApplicationBarIconButton 
                     x:Name="appbarPlayAndPauseButton"
                     IconUri="Images/appbar.transport.play.rest.png" 
                     Text="Play"
                     IsEnabled="True"
                     Click="OnAppbarPlayAndPauseClick" />
-            <shell:ApplicationBarIconButton 
+             <shell:ApplicationBarIconButton 
                     x:Name="appbarStopButton"
                     IconUri="Images/appbar.transport.stop.rest.png" 
                     Text="Stop"
-                    IsEnabled="False"
+                    IsEnabled="True"
                     Click="OnAppbarStopClick" />
+            <shell:ApplicationBarIconButton 
+                    x:Name="appbarNextButton"
+                    IconUri="Images/appbar.transport.ff.rest.png" 
+                    Text="Play"
+                    IsEnabled="True"
+                    Click="OnAppbarNextClick" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

@@ -86,6 +86,7 @@ namespace LyricsDisplay
 
         private void OnChangeToLyrics(Object sender, System.Windows.Input.ManipulationStartedEventArgs e)
         {
+          
             IsChangeToLyrics = true;
         }
     }
